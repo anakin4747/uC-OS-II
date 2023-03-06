@@ -1,0 +1,24 @@
+There are 4 states of Tasks in uc/OS-II
+
+Only the kernel can move tasks between states via a kernel service call.
+When a service call is made by the task that is running or by an ISR, the
+kernel's scheduler gets executed.
+
+DORMANT
+    All start out as dormant and the kernel will not be managed by the kernel.
+    In this state the code for the task is written and has stack space
+    allocated for it. These tasks will not be scheduled to run.
+    To exit the dormant state OSTaskCreate() must be run on that task.
+    This places the task in the READY state.
+    OSTaskDel() will return the state back to dormant from any other state.
+
+READY
+    A task can be considered ready after an event posted or the task resumed.
+    This means it will get switched into running when it is scheduled. A ready
+    task can be sent to waiting from ready if it is suspended. The scheduler
+    always switches CPU control to the highest priority task in the READY state.
+
+WAITING
+    
+RUNNING
+
